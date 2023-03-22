@@ -1,22 +1,37 @@
 // exemple charge un svg depuis le rep asset => import reactLogo from './assets/react.svg'
 // exemple charge un svg depuis le rep public => import viteLogo from '/vite.svg'
 
-import Navbar from './components/Navbar'
-const App = () => {
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Homepage from "./pages/Homepage";
+import Product from "./pages/Product";
+import Shop from "./pages/Shop";
+import Panier from "./pages/Panier";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
+const App = () => {
   return (
-    <div className="App">
+    <>
       <header>
         <Navbar />
       </header>
-      <main>
-        <div id="content-wrapper" className="mui--text-center">
-          test
-        </div>
-      </main>
 
-    </div>
-  )
-}
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/panier" element={<Panier />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
 
-export default App
+      <footer>
+        <Footer />
+      </footer>
+    </>
+  );
+};
+
+export default App;
