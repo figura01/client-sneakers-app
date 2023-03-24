@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import contactLogo from "../assets/logo-contact.svg";
 import contactPicture from "../assets/photo-contact.jpg";
 import "../styles/Homepage.css";
+import { Outlet } from "react-router-dom";
 
 const Homepage = () => {
   return (

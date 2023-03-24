@@ -13,7 +13,7 @@ const Navbar = () => {
       <Container>
         <div className="navbar">
           <img src={reactLogo} alt="logo-brand" width={55} height={65} />
-          <div>
+          <div className="links">
             <div className="subnav">
               <div className="subnavbtn">
                 <Link to={`shop`} className="nav-link">
@@ -29,7 +29,9 @@ const Navbar = () => {
           <div className="nav-icons">
             <SearchOutlinedIcon />
             <ShoppingBasketOutlinedIcon />
-            <PersonOutlineOutlinedIcon />
+            <Link to={`login`}>
+              <PersonOutlineOutlinedIcon />
+            </Link>
           </div>
         </div>
       </Container>
