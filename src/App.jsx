@@ -11,6 +11,11 @@ import Panier from "./pages/Panier";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
+// Routes Admin
+import HomeAdmin from "./pages/admin/HomeAdmin";
+import UserAdmin from './pages/admin/users';
+import UserDetail from './pages/admin/users/UserDetail';
+
 const App = () => {
   return (
     <>
@@ -19,12 +24,22 @@ const App = () => {
       </header>
 
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/panier" element={<Panier />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        {/*Route Client */}
+        <Route path="/" element={<Homepage />}>
+          <Route path="product" element={<Product />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="panier" element={<Panier />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+        </Route>
+
+        {/*Route Admin */}
+        
+        <Route path="/admin" element={<HomeAdmin />} >
+          <Route path="users" element={<UserAdmin />} />
+          <Route path="users/:id" element={<UserDetail />} /> {/*A nested route!*/}
+          
+        </Route>
       </Routes>
 
       <footer>
