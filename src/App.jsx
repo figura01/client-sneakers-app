@@ -25,19 +25,20 @@ const App = () => {
 
       <Routes>
         {/*Route Client */}
-        <Route path="/" element={<Homepage />}>
-          <Route path="product" element={<Product />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="panier" element={<Panier />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<SignUp />} />
-        </Route>
+        <Route path="/" element={<Homepage />} />
+        <Route path="product" element={<Product />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="panier" element={<Panier />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
+
 
         {/*Route Admin */}
-        
+
         <Route path="/admin" element={<HomeAdmin />} >
           <Route path="users" element={<UserAdmin />} />
           <Route path="users/:id" element={<UserDetail />} /> {/*A nested route!*/}
+
         </Route>
       </Routes>
 
