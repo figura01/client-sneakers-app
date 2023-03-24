@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import "../styles/MainBtn.css";
+import "../styles/Button.css";
 
-const MainBtn = ({ title }) => {
+const MainBtn = ({ title, path }) => {
   return (
-    <Link to={`#`} className="main-btn">
+    <Link to={path} className="main-btn">
       {title}
     </Link>
   );
