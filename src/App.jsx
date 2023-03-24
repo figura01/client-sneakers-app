@@ -38,7 +38,6 @@ const App = () => {
         <Route path="/admin" element={<HomeAdmin />} >
           <Route path="users" element={<UserAdmin />} />
           <Route path="users/:id" element={<UserDetail />} /> {/*A nested route!*/}
-          
         </Route>
       </Routes>
 
