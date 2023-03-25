@@ -15,7 +15,7 @@ const PanierList = () => {
     }else{
         return (
         
-            <Card sx={{ boxShadow: 3 }} className='ItemsCard'>
+            <Card sx={{ boxShadow: 3,overflowY: "auto",height:420 }} className='ItemsCard'>
                 <ul className='panierUl'>  
                 {products.map((product,index)=>{
                     return(
