@@ -32,7 +32,8 @@ const PanierItem = ({product}) => {
                 <img className='' src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt=""  /> 
                 <div>
                     <p className='nomProduit'>{product.nom}</p>
-                    <p>taille : {product.taille} - prix : {product.prix}</p>
+                    <p></p>
+                    <p>taille : {product.taille} - prix : {product.prix * product.quantite} €</p>
                 </div>
                 <div >
                     <input type='button' className='CountButton' onChange={product.quantite==0?removeProduct(product.id):''} onClick={()=>decrease(product.id)}  value='-' />

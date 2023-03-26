@@ -1,11 +1,14 @@
 import PanierList from "../components/panier.components/PanierList";
 import PanierRecap from "../components/panier.components/PanierRecap";
+import PanierSuggestion from "../components/panier.components/PanierSuggestion";
 import { useState, createContext, useContext } from "react";
+import emptyBasket from "../assets/panier_empty.png";
 import '../styles/Panier.css';
+import { Card } from "@mui/material";
 
 export const ProductContext = createContext();
 const Panier = () => {
-  const [products, setProducts] = useState([{id:1,nom:'Air T',taille:44.5,prix:98.5,quantite:3},{id:2,nom:'Air T',taille:44.5,prix:98.5,quantite:2},{id:3,nom:'Air T',taille:44.5,prix:98.5,quantite:2}]);
+  const [products, setProducts] = useState([{id:1,nom:'Air T',taille:44.5,prix:98.5,quantite:3},{id:4,nom:'Air T',taille:44.5,prix:98.5,quantite:3},{id:5,nom:'Air T',taille:44.5,prix:98.5,quantite:3},{id:2,nom:'Air T',taille:44.5,prix:98.5,quantite:2},{id:3,nom:'Air T',taille:44.5,prix:98.5,quantite:2}]);
 
   const addProduct = (id)=>{
     let newProductList = products.map(product=>{
@@ -35,16 +38,36 @@ const Panier = () => {
     console.log(newArr);
   }
 
+  if(products.length<1){
+    return (
+      <>
+      <section className="PanierSection">
+      <Card style={{padding:10}}>
+        <div style={{display:'flex',justifyContent:'center'}}>
+        <img style={{height:200,width:200}} src={emptyBasket}/>
+        </div>
+        <p style={{fontWeight:'bold',fontSize:24}}>Panier vide : ajoutez des produits ou connectez vous</p>
+      </Card>
+      </section>
+      </>
+      
+    )
+  }
+
   return (
     <>
       <ProductContext.Provider value={[products,addProduct,subProduct ,removeProduct]}>
         <section className="PanierTop">
-        <h1>Panier</h1>
-        <section className="PanierSection">
-          <PanierList></PanierList>
-          <PanierRecap></PanierRecap>
+          <h1>Panier</h1>
+          <section className="PanierSection">
+            <PanierList></PanierList>
+            <PanierRecap></PanierRecap>
+          </section>
+          <hr className="sectionSeperator"></hr>
         </section>
-        <hr className="sectionSeperator"></hr>
+        <section>
+          <h1>Vous allez adorez aussi...</h1>
+          <PanierSuggestion></PanierSuggestion>
         </section>
         
       </ProductContext.Provider>   
