@@ -2,7 +2,7 @@ import axios from "axios";
 
 const service = axios.create({
   baseURL: import.meta.env.REACT_APP_BACKEND_LOCAL_URL,
-  withCredentials: true, // Cookie is sent to client when using this service. (used for session)
+  withCredentials: false, // Cookie is sent to client when using this service. (used for session)
 });
 
 function errorHandler(error) {
@@ -31,7 +31,9 @@ export default {
     console.log(userInfo)
     return service
       .post(url, userInfo)
-      .then((res) => res.data)
+      .then((res) => {
+        console.log('res: ', res)
+        res.data})
       .catch(errorHandler);
   },
 

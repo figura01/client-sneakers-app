@@ -14,6 +14,37 @@ const UserAdmin = () => {
     {id: 5, firstname: 'Carolina', lastname: 'Rudiger', email: 'crudiger4@sphinn.com'},
   ])
 
+  useEffect(() => {
+    let resFetch = async () => {
+      await fetch('http://localhost:8000/auth/login', 
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            email: 'admin@mail.com',
+            password: 'admin'
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+            mode: 'no-cors'
+          },
+        })
+        .then((res) => res.json())
+        .then(res => console.log(res))
+      }
+      resFetch() 
+    }, [])
+  
+    useEffect(() => {
+      const loggIn = async () => {
+        let response = await api.login('http://localhost:8000/auth/login', {
+          email: 'admin@mail.com',
+          password: 'admin'
+        })
+        console.log('response apiHandler', response)
+      }
+      loggIn();
+    }, [])
+
   return (
     <div>
       <table>
