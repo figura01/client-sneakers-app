@@ -2,6 +2,8 @@ import React, { useState, useRef, useContext } from 'react';
 import { useAuth } from '../contextes/authCtx';
 import { useSeessionStorage } from '../hooks/useSesseionStorage';
 import { Box } from "@mui/system";
+import { Container } from "@mui/system";
+
 import api from '../api/apiHandler';
 
 
@@ -53,7 +55,8 @@ const Login = () => {
   const inputPasswordRef = useRef();
 
   return (
-    <Box>
+    <Container>
+      <Box>
       <h1>Se connecter</h1>
       <form onSubmit={(e) => handlerSubmit(e)} onChange={(e) => handlerChange(e)} method="post" action="http://localhost:8000/auth/login">
         <input
@@ -75,6 +78,8 @@ const Login = () => {
         <input type="submit" value="Se connecter" className="main-btn" />
       </form>
     </Box>
+    </Container>
+    
   );
 };
 

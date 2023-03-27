@@ -36,8 +36,8 @@ const PanierItem = ({product}) => {
                     <p>taille : {product.taille} - prix : {product.prix * product.quantite} €</p>
                 </div>
                 <div >
-                    <input type='button' className='CountButton' onChange={product.quantite==0?removeProduct(product.id):''} onClick={()=>decrease(product.id)}  value='-' />
-                    <input className='CountBox' type="text" value={product.quantite} />
+                    <input type='button' className='CountButton' onChange={product.quantite==0?removeProduct(product.id):()=>{}} onClick={()=>decrease(product.id)}  value='-' />
+                    <input className='CountBox' type="text" readOnly={true} value={product.quantite} />
                     <input type='button' className='CountButton' onClick={()=>increase(product.id)}   value='+' />
                 </div>
                 <span>

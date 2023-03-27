@@ -18,7 +18,7 @@ const PanierSuggestion = () => {
                 {products.map((product,index)=>{
                     return(
                 
-                    <Card className='Scrollabe' style={{border:'none',minWidth:250, margin:25}}  >
+                    <Card key={product.id} className='Scrollabe' style={{border:'none',minWidth:250, margin:25}}  >
                         <img style={{width:'100%',height:122}} src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt=""  />
                         <p style={{textAlign:'center'}} className='nomProduit'>{product.nom}</p>
                         <p style={{textAlign:'center'}} >taille : {product.taille} - prix : {product.prix} €</p>

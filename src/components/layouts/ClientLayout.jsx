@@ -10,9 +10,9 @@ const ClientLayout = () => {
         <Navbar />
       </header>
       <main>
-        <Container>
+        
           <Outlet />
-        </Container>
+        
       </main>
 
       <footer>
