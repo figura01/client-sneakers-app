@@ -26,14 +26,12 @@ export default {
   // },
 
   login(url, userInfo) {
-    console.log('login api handler');
-    console.log(url)
-    console.log(userInfo)
     return service
       .post(url, userInfo)
       .then((res) => {
         console.log('res: ', res)
-        res.data})
+        return res.data
+      })
       .catch(errorHandler);
   },
 

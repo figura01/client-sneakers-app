@@ -17,8 +17,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Link, Outlet} from 'react-router-dom';
 
-const AdminLayout = () => {
-    const { window } = props;
+const drawerWidth = 240;
+
+const AdminLayout = props => {
+  const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {

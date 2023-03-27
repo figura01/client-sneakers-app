@@ -1,15 +1,42 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
+import { useAuth } from '../contextes/authCtx';
+import { useSeessionStorage } from '../hooks/useSesseionStorage';
 import { Box } from "@mui/system";
-
 import api from '../api/apiHandler';
+
+
 const Login = () => {
+  const authCtx = useAuth();
+  // console.log('authCtx: ', authCtx)
+  const { 
+    authUser,
+    setAuthUser,
+    isLoggedIn,
+    setIsLoggedIn
+  } = useAuth();
+
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
 
     if(inputEmailRef.current.value && inputPasswordRef.current.value) {
+      console.log('test to loggIn');
       try {
-        const result = await api.login('http://localhost:8000/auth/login', {email: inputEmailRef.current.value, password: inputPasswordRef.current.value})
+        const result = await api.login('http://localhost:8000/auth/login', 
+          {
+            email: inputEmailRef.current.value,
+            password: inputPasswordRef.current.value
+          }
+        )
+        console.log('result', result)
+
+        if(result.status === 200 && result.logged) {
+          console.log('try to use authCtx:')
+
+          authCtx.login('user', {...result})
+          authCtx.logout()
+        }
+      
       } catch (err) {
         console.log('err: ', err)
       }
