@@ -14,7 +14,7 @@ import { Outlet } from "react-router-dom";
 
 const Homepage = () => {
   return (
-    <>
+    <Container>
       <section id="call-to-action">
         <Box
           sx={{
@@ -138,7 +138,7 @@ const Homepage = () => {
           </Box>
         </Box>
       </section>
-    </>       
+    </Container>       
   );
 };
 

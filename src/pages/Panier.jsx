@@ -1,6 +1,7 @@
 import PanierList from "../components/panier.components/PanierList";
 import PanierRecap from "../components/panier.components/PanierRecap";
 import PanierSuggestion from "../components/panier.components/PanierSuggestion";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, createContext, useContext } from "react";
 import emptyBasket from "../assets/panier_empty.png";
 import '../styles/Panier.css';
@@ -38,17 +39,30 @@ const Panier = () => {
     console.log(newArr);
   }
 
+
+  const theme = createTheme({
+    components: {
+      MuiContainer: {
+        styleOverrides: {
+          maxWidthLg: {
+            width: 1519,
+          },
+        },
+      },
+    },
+  });
+
   if(products.length<1){
     return (
       <>
-      <section className="PanierSection">
-      <Card style={{padding:10}}>
-        <div style={{display:'flex',justifyContent:'center'}}>
-        <img style={{height:200,width:200}} src={emptyBasket}/>
-        </div>
-        <p style={{fontWeight:'bold',fontSize:24}}>Panier vide : ajoutez des produits ou connectez vous</p>
-      </Card>
-      </section>
+        <section className="PanierSection">
+          <Card style={{padding:10}}>
+            <div style={{display:'flex',justifyContent:'center'}}>
+            <img style={{height:200,width:200}} src={emptyBasket}/>
+            </div>
+            <p style={{fontWeight:'bold',fontSize:24}}>Panier vide : ajoutez des produits ou connectez vous</p>
+          </Card>
+        </section>
       </>
       
     )
@@ -69,6 +83,7 @@ const Panier = () => {
           <h1>Vous allez adorez aussi...</h1>
           <PanierSuggestion></PanierSuggestion>
         </section>
+        
         
       </ProductContext.Provider>   
     </>

@@ -17,12 +17,12 @@ const PanierList = () => {
         
             <Card sx={{ boxShadow: 3,overflowY: "auto",height:420 }} className='ItemsCard'>
                 <ul className='panierUl'>  
-                {products.map((product,index)=>{
+                {products.map((product)=>{
                     return(
-                        <>
-                            <PanierItem key={"item"+index} product={product}></PanierItem>
+                        <div key={product.id}>
+                            <PanierItem  product={product}></PanierItem>
                             <hr style={{width:'80%'}} />
-                        </>
+                        </div>
                         
                     ) 
                  })}

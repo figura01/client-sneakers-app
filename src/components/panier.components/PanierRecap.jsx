@@ -26,12 +26,12 @@ const PanierRecap = () => {
                 <TableBody >
                         {products.map((product,index)=>{
                     return(
-                        <>
-                            <TableRow style={{display:'flex',justifyContent:'space-around'}}> 
+                        
+                            <TableRow key={product.id} style={{display:'flex',justifyContent:'space-around'}}> 
                                 <TableCell style={tdStyles}>{product.nom}</TableCell>
                                 <TableCell style={tdStyles}>{product.prix * product.quantite} €</TableCell>
                             </TableRow>
-                        </>
+                        
                             ) 
                  })}
                 </TableBody>
