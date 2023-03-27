@@ -5,7 +5,8 @@ import Stack from '@mui/material/Stack';
 
 const Shop = () => {
   return (
-    <div>
+    <Container>
+      <div>
       <Container>
         <Grid container item xs={12} justifyContent="center" >    
             <Grid item xs={6}>
@@ -44,7 +45,9 @@ const Shop = () => {
         </Grid>
       </Container>
 
-    </div> 
+    </div>
+    </Container>
+     
   )
 };
 
