@@ -18,12 +18,14 @@ function errorHandler(error) {
 export default {
   service,
 
-  // signup(userInfo) {
-  //   return service
-  //     .post("/api/auth/signup", userInfo)
-  //     .then((res) => res.data)
-  //     .catch(errorHandler);
-  // },
+  signup(url, userInfo) {
+    return service
+      .post(url, userInfo)
+      .then((res) => {
+        return res.data
+      })
+      .catch(errorHandler);
+  },
 
   login(url, userInfo) {
     return service

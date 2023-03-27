@@ -1,5 +1,5 @@
 import React, {useState, createContext, useContext, useMemo} from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import api from '../api/apiHandler';
 export const AuthContext = createContext();
 
@@ -8,6 +8,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = props => {
+  const navigate = useNavigate()
   const [authUser, setAuthUser] = useState({
     _id: '',
     role: '',
@@ -20,22 +21,42 @@ export const AuthProvider = props => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const login = async (key, userData) => {
-    console.log('log in authCtx');
-    console.log('key: ', key, 'userData: ', userData);
-    console.log('userData: ', userData)
-    saveUserToSessionStorage(userData.token)
-    const { token, logged } = userData;
-    const {_id, firstname, lastname, email, role } = userData.user;
-    setIsLoggedIn(true)
-    setAuthUser({_id, firstname, lastname, email, token, role, logged})
+    console.log('userData in login: ', userData)
+    const { token } = userData;
+    const { logged, role, _id, email } = userData.user;
+    saveUserToSessionStorage({token, user: {logged, role, _id, email}})
 
-    // navigate("/dashboard/profile", { replace: true });
+    setIsLoggedIn(true)
+    setAuthUser({_id, email, token, role, logged})
+    console.log('role: ', role)
+    if(role === 'client') {
+      navigate('/')
+    } else if (role === 'admin'){
+      navigate('/admin')
+    }
   };
 
   const logout = async () => {
-    console.log('logout: ')
     sessionStorage.setItem('user', null);
     setAuthUser({});
+    setIsLoggedIn(false);
+    navigate('/');
+  }
+
+  const signup = async (key, userData) => {
+    console.log('userData in signup: ', userData)
+    const { token } = userData;
+    const { logged, role, _id, email, firstname, lastname} = userData.user;
+    saveUserToSessionStorage({token, user: { _id, logged, role, email, firstname, lastname}})
+
+    setIsLoggedIn(true)
+    setAuthUser({_id, firstname, lastname, email, token, role, logged})
+    console.log('role: ', role)
+    if(role === 'client') {
+      navigate('/')
+    } else if (role === 'admin'){
+      navigate('/admin')
+    }
   }
 
   const saveUserToSessionStorage = (userInfo) => {
@@ -50,6 +71,7 @@ export const AuthProvider = props => {
     setIsLoggedIn,
     login,
     logout,
+    signup,
     }), [authUser]
   )
 

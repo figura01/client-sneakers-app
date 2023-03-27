@@ -5,9 +5,13 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import reactLogo from "../assets/logoBlanc.svg";
+import { useAuth } from '../contextes/authCtx';
+
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const authCtx = useAuth();
+  console.log(authCtx)
   return (
     <nav>
       <Container>
@@ -29,9 +33,14 @@ const Navbar = () => {
           <div className="nav-icons">
             <SearchOutlinedIcon />
             <ShoppingBasketOutlinedIcon />
+            {authCtx.isLoggedIn ?
+              (<button onClick={(e) => {e.preventDefault(); authCtx.logout() }}>Logout</button>)
+              :(<p>Login</p>)
+            }
             <Link to={`login`}>
               <PersonOutlineOutlinedIcon />
             </Link>
+            
           </div>
         </div>
       </Container>
