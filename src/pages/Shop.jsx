@@ -44,7 +44,8 @@ const Shop = () => {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   return (
-    <div>
+    <Container>
+      <div>
       <Container>
         
         <Grid container item xs={12}  justifyContent="center" >    
@@ -242,7 +243,9 @@ const Shop = () => {
         </Grid>
       </Container>
 
-    </div> 
+    </div>
+    </Container>
+     
   )
 };
 const itemData = [

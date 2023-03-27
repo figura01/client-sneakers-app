@@ -1,6 +1,11 @@
+import { Container } from "@mui/system";
+
 const Product = () => {
   return (
-        <h1>PRODUCT</h1>
+    <Container>
+      <h1>PRODUCT</h1>
+    </Container>
+        
 
   )
 }

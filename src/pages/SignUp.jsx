@@ -1,6 +1,10 @@
+import { Container } from "@mui/system";
 const SignUp = () => {
   return (
-        <h1>SIGNUP</h1>
+    <Container>
+       <h1>SIGNUP</h1>
+    </Container>
+       
 
   )
 };
