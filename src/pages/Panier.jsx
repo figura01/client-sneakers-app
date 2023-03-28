@@ -72,7 +72,7 @@ const Panier = () => {
     <>
       <ProductContext.Provider value={[products,addProduct,subProduct ,removeProduct]}>
         <section className="PanierTop">
-          <h1>Panier</h1>
+          <h1 className="panierTitles">Panier</h1>
           <section className="PanierSection">
             <PanierList></PanierList>
             <PanierRecap></PanierRecap>
@@ -80,7 +80,7 @@ const Panier = () => {
           <hr className="sectionSeperator"></hr>
         </section>
         <section>
-          <h1>Vous allez adorez aussi...</h1>
+          <h1 className="panierTitles">Vous allez adorez aussi...</h1>
           <PanierSuggestion></PanierSuggestion>
         </section>
         

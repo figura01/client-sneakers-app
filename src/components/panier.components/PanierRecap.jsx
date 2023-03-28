@@ -50,14 +50,14 @@ const PanierRecap = () => {
                     <label htmlFor="codeReduc">Code de reduction :</label>
                     <div >
                         <input type="text" name="codeReduc" id="codeReduc" />
-                        <MainBtn title={"Valider"}></MainBtn>
+                        <MainBtn title={"Ajouter"}></MainBtn>
                     </div>
                    
                 </div>
                 
             </form>
             <div className='Pay' >
-                <MainBtn title={"Paiement"}></MainBtn>
+                <MainBtn title={"Valider"}></MainBtn>
                 {/*<input type='button' className='RecapCardButton' value='Paiement'/>*/}
             </div>
             

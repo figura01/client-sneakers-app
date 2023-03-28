@@ -20,7 +20,7 @@
 }
 
 /*Panier titre*/
-h1{
+.panierTitles{
     text-align: center;
     color: #DD624E;
 }
