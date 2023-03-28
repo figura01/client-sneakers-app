@@ -23,8 +23,8 @@ export const AuthProvider = props => {
   const login = async (key, userData) => {
     console.log('userData in login: ', userData)
     const { token } = userData;
-    const { logged, role, _id, email } = userData.user;
-    saveUserToSessionStorage({token, user: {logged, role, _id, email}})
+    const { logged, role, _id, email } = userData;
+    saveUserToSessionStorage({token, logged, role, _id, email})
 
     setIsLoggedIn(true)
     setAuthUser({_id, email, token, role, logged})
@@ -45,9 +45,8 @@ export const AuthProvider = props => {
 
   const signup = async (key, userData) => {
     console.log('userData in signup: ', userData)
-    const { token } = userData;
-    const { logged, role, _id, email, firstname, lastname} = userData.user;
-    saveUserToSessionStorage({token, user: { _id, logged, role, email, firstname, lastname}})
+    const { token, logged, role, _id, email, firstname, lastname } = userData;
+    saveUserToSessionStorage({token, _id, logged, role, email, firstname, lastname})
 
     setIsLoggedIn(true)
     setAuthUser({_id, firstname, lastname, email, token, role, logged})

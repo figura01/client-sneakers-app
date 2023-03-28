@@ -38,13 +38,8 @@ const validationSchema = yup.object({
 });
 
 const SignUp = () => {
-  // const [email, setEmail] = useState('');
-  // const [firstname, setFirstname] = useState('');
-  // const [lastname, setLastname] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
   const authCtx = useAuth();
-
+  const [error, setError] = useState();
   const formik = useFormik({
     initialValues: {
       firstname: '',
@@ -55,6 +50,7 @@ const SignUp = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+     
       console.log('formik submit-------------')
       console.log('---', values)
       // alert(JSON.stringify(values, null, 2));
@@ -68,11 +64,17 @@ const SignUp = () => {
             lastname: values.lastname,
           }
         )
+        console.log(result);
         if(result.status === 200 && result.logged) {
           authCtx.signup('user', {...result})
+        } else {
+          console.log('------------')
+          setError(result)
         }
       } catch (err) {
+        console.log('rrtour error: ------')
         console.log('err: ', err)
+       
       } 
     },
   });
@@ -113,78 +115,79 @@ const SignUp = () => {
       <form id="form-signup" onSubmit={formik.handleSubmit} method="post" action="http://localhost:8000/auth/login">
         <div className="inner_signup">
           <Stack spacing={2} direction="column">
-          <h1>Créer un compte</h1>
+            <h1>Créer un compte</h1>
 
-          <TextField
-            required
-            id="firstname"
-            label="Prénom"
+            <TextField
+              required
+              id="firstname"
+              label="Prénom"
 
-            placeholder="Votre prénom"
-            name="firstname"
-            size="small"
-            value={formik.values.firstname}
-            onChange={formik.handleChange}
-            error={formik.touched.firstname && Boolean(formik.errors.firstname)}
-            helperText={formik.touched.firstname && formik.errors.firstname}
-          />
+              placeholder="Votre prénom"
+              name="firstname"
+              size="small"
+              value={formik.values.firstname}
+              onChange={formik.handleChange}
+              error={formik.touched.firstname && Boolean(formik.errors.firstname)}
+              helperText={formik.touched.firstname && formik.errors.firstname}
+            />
 
-          <TextField
-            required
-            id="lastname"
-            label="Nom"
+            <TextField
+              required
+              id="lastname"
+              label="Nom"
 
-            placeholder="Votre nom"
-            name="lastname"
-            size="small"
-            value={formik.values.lastname}
-            onChange={formik.handleChange}
-            error={formik.touched.lastname && Boolean(formik.errors.lastname)}
-            helperText={formik.touched.lastname && formik.errors.lastname}
-          />
-          <TextField
-            required
-            id="eamil"
-            label="Email"
+              placeholder="Votre nom"
+              name="lastname"
+              size="small"
+              value={formik.values.lastname}
+              onChange={formik.handleChange}
+              error={formik.touched.lastname && Boolean(formik.errors.lastname)}
+              helperText={formik.touched.lastname && formik.errors.lastname}
+            />
+            <TextField
+              required
+              id="eamil"
+              label="Email"
 
-            placeholder="nom@exemple.com"
-            name="email"
-            size="small"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-          />
-            
-          <TextField
-            required
-            label="Password"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Mot de passe*"
-            size="small"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            helperText={formik.touched.password && formik.errors.password}
-          />
+              placeholder="nom@exemple.com"
+              name="email"
+              size="small"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+            />
+              
+            <TextField
+              required
+              label="Password"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Mot de passe*"
+              size="small"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+            />
 
-          <TextField
-            required
-            label="Confirme Password"
-            type="password"
-            name="confirmPassword"
-            id="confirm_password"
-            placeholder=""
-            size="small"
-            value={formik.values.confirmPassword}
-            onChange={formik.handleChange}
-            error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-            helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
-          />
+            <TextField
+              required
+              label="Confirme Password"
+              type="password"
+              name="confirmPassword"
+              id="confirm_password"
+              placeholder=""
+              size="small"
+              value={formik.values.confirmPassword}
+              onChange={formik.handleChange}
+              error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+              helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+            />
 
-          <input type="submit" value="Se connecter" className="main-btn" />
+            <input type="submit" value="Se connecter" className="main-btn" />
+            {error && ( <p className="error">{error.message}</p>)}
           </Stack>
         </div>
       </form>

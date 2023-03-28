@@ -31,15 +31,29 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="nav-icons">
+            {!authCtx.isLoggedIn ?
+              (
+                
+                <>
+                  <Link to={`login`} className="btn btn-link">
+                    Connexion
+                  </Link>
+                  <Link to={`signup`} className="btn btn-link">
+                    Créer un compte
+                  </Link>
+                </>
+              ) : (
+                <button className="btn btn-link" onClick={(e) => {e.preventDefault(); authCtx.logout()}} >Déconnexion</button>
+              )
+            }
             <SearchOutlinedIcon />
             <ShoppingBasketOutlinedIcon />
-            {authCtx.isLoggedIn ?
-              (<button onClick={(e) => {e.preventDefault(); authCtx.logout() }}>Logout</button>)
-              :(<p>Login</p>)
-            }
-            <Link to={`login`}>
-              <PersonOutlineOutlinedIcon />
-            </Link>
+            
+            {authCtx.isLoggedIn && (
+              <Link to={`profile`}>
+                <PersonOutlineOutlinedIcon />
+              </Link>
+            )}
             
           </div>
         </div>
