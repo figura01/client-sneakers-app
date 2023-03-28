@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Container } from "@mui/system";
 import MainBtn from "../components/MainBtn";
 import CardIcon from "../components/CardIcon";
@@ -10,11 +11,14 @@ import Box from "@mui/material/Box";
 import contactLogo from "../assets/logo-contact.svg";
 import contactPicture from "../assets/photo-contact.jpg";
 import "../styles/Homepage.css";
+import { AuthContext } from '../contextes/authCtx';
 import { Outlet } from "react-router-dom";
 
 const Homepage = () => {
+  const auth = useContext(AuthContext);
+  console.log(auth)
   return (
-    <>
+    <Container>
       <section id="call-to-action">
         <Box
           sx={{
@@ -138,7 +142,7 @@ const Homepage = () => {
           </Box>
         </Box>
       </section>
-    </>       
+    </Container>       
   );
 };
 
