@@ -75,6 +75,10 @@ section h1 {
   color: #FFFADF;
 }
 
+.contact-form p {
+  color: #FFFADF;
+}
+
 #contact-input {
   background: transparent;
   border: 2px solid #FFFADF;

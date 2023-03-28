@@ -12,55 +12,99 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Footer = () => {
   return (
-    <div id="footer-content" >
-        <Container>
-            <Grid container spacing={2}>
-                <Grid item xs={4} >
-                    <h1>Liens utiles</h1>
-                    <ul >
-                        <Stack spacing={1}>
-                        <li><Link to={`#`}>Retours</Link></li>
-                        <li><Link to={`#`}>Contact</Link></li>
-                        <li><Link to={`#`}>Boutiques</Link></li>
-                        </Stack>
-                    </ul>
-                </Grid>
-                <Grid item xs={4}>
-                    <h1>Informations</h1>             
-                    <ul>
-                        <Stack spacing={1}>
-                        <li><Link to={`#`}>Conditions d'utilisation</Link></li>
-                        <li><Link to={`#`}>CGV</Link></li>
-                        <li><Link to={`#`}>Mentions légales</Link></li>
-                        <li><Link to={`#`}></Link></li>
-                        </Stack>
-                    </ul>
-                    
-                </Grid>
-                <Grid item xs={4} >
-                    <h1>Réseaux</h1>
-                    
-                    <Stack direction="row" spacing={4}>
-                        < FacebookOutlinedIcon />
-                        < TwitterIcon />
-                        < InstagramIcon />
-                    </Stack>
-                   
-                </Grid>
-            </Grid>
-            <Grid container item xs={12} justifyContent="center" >    
-                <Grid item xs={6} >
-                    <div id="copyright">     
-                        <br/>  
-                        <p>© 2023 Sneakly, Inc. Tous droits résérvés</p>
-                       
-                    </div>
-                </Grid>  
-            </Grid>
-            
-        </Container>
+    <div id="footer-content">
+      <Container>
+        <Grid container spacing={2}>
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <h1>Liens utiles</h1>
+            <ul>
+              <Stack spacing={1}>
+                <li>
+                  <Link to={`#`}>Retours</Link>
+                </li>
+                <li>
+                  <Link to={`#`}>Contact</Link>
+                </li>
+                <li>
+                  <Link to={`#`}>Boutiques</Link>
+                </li>
+              </Stack>
+            </ul>
+          </Grid>
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <h1>Informations</h1>
+            <ul>
+              <Stack spacing={1}>
+                <li>
+                  <Link to={`#`}>Conditions d'utilisation</Link>
+                </li>
+                <li>
+                  <Link to={`#`}>CGV</Link>
+                </li>
+                <li>
+                  <Link to={`#`}>Mentions légales</Link>
+                </li>
+                <li>
+                  <Link to={`#`}></Link>
+                </li>
+              </Stack>
+            </ul>
+          </Grid>
+          <Grid
+            item
+            xs={4}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <h1>Réseaux</h1>
+
+            <Stack direction="row" spacing={4} sx={{mt: 4}}>
+              <FacebookOutlinedIcon />
+              <TwitterIcon />
+              <InstagramIcon />
+            </Stack>
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Grid item>
+            <div id="copyright">
+              <br />
+              <p>© 2023 Sneakly, Inc. Tous droits résérvés</p>
+            </div>
+          </Grid>
+        </Grid>
+      </Container>
     </div>
-  )
+  );
 }
 
 export default Footer;

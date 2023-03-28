@@ -18,6 +18,10 @@ a {
   color: unset;
 }
 
+ul {
+  padding-left: unset;
+}
+
 .App {
   display: flex;
   justify-content: center;
