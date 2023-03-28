@@ -3,11 +3,10 @@ import {Link} from "react-router-dom";
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
+
 import Slider from '@mui/material/Slider';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import NativeSelect from '@mui/material/NativeSelect';
+
+import CustomRadioButton from "../components/CustomRadioButton";
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -15,19 +14,40 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
+
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import { blue, pink, yellow } from '@mui/material/colors';
-import Checkbox from '@mui/material/Checkbox';
+
 
 import "../styles/Shop.css";
+import "../styles/Product.css";
 
 function valuetext(value) {
   return `${value}€`;
 }
+
+const colorsData = [
+  { value: "red" },
+  { value: "blue" },
+  { value: "yellow" },
+  { value: "white" },
+];
+
+const taillesData = [
+  { value: "37" },
+  { value: "38" },
+  { value: "39" },
+  { value: "40" },
+  { value: "41" },
+  { value: "42" },
+  { value: "43" },
+  { value: "44" },
+  { value: "45" },
+  { value: "46" },
+  { value: "47" },
+  { value: "48" },
+];
 
 const Shop = () => {
   const [sliderValue, setSliderValue] = useState([20, 1000]);
@@ -44,36 +64,12 @@ const Shop = () => {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   return (
-    <Container>
-      <div>
+    <div>
       <Container>
         
         <Grid container item xs={12}  justifyContent="center" >    
             <Grid item xs={6}>
             <h3>Sneakers</h3>
-
-            <Box sx={{ maxWidth: 200 }} position = 'rows'>
-              <FormControl fullWidth>
-                {/* <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                  Sneakers
-                </InputLabel> */}
-               
-                <NativeSelect
-                  defaultValue={20}
-                  inputProps={{
-                    name: 'Sneakers',
-                    // id: 'uncontrolled-native',
-                  }}
-                >
-                  <option value={10}>Pour Elle</option>
-                  <option value={20}>Pour Lui</option>
-                  <option value={30}>Les Kids</option>
-                  <option value={40}>Running</option>
-                  <option value={50}>Les Accessoirs</option>
-               
-                </NativeSelect>
-              </FormControl>
-            </Box>
             
             </Grid>      
         </Grid>
@@ -82,11 +78,11 @@ const Shop = () => {
           {/* <h1></h1> */}
             <ul >
               <Stack spacing={1}>
-                <li><Link to={`#`}>Tous les sneakers</Link></li>
-                <li><Link to={`#`}>Classique</Link></li>
-                <li><Link to={`#`}>Runnig</Link></li>
-                <li><Link to={`#`}>Sportif</Link></li>
-                <li><Link to={`#`}>Made in the UK & US</Link></li>
+                <li><Link to={`#`}>Pour Elle</Link></li>
+                <li><Link to={`#`}>Pour Lui</Link></li>
+                <li><Link to={`#`}>Les Kids</Link></li>
+                <li><Link to={`#`}>Running</Link></li>
+                <li><Link to={`#`}>Les Accessoirs</Link></li>
               </Stack>
             </ul>
             <ul>
@@ -100,10 +96,17 @@ const Shop = () => {
                   <Typography>Taille</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  {/* <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                  </Typography> */}
+                  <div className="radio-taille-wrapper">
+                     {taillesData.map((data, index) => (
+                      <CustomRadioButton
+                        data={data}
+                        index={`taille-${index}`}
+                        name="taille"
+                        key={`radio-taille-${index}`}
+                      />
+                    ))}
+                  </div>
+    
                 </AccordionDetails>
               </Accordion>
               <Accordion>
@@ -115,10 +118,15 @@ const Shop = () => {
                   <Typography>Marque</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                  </Typography>
+                <ul >
+                    <Stack spacing={1}>
+                      <li><Link to={`#`}>Marque 1</Link></li>
+                      <li><Link to={`#`}>Marque 2</Link></li>
+                      <li><Link to={`#`}>Marque 3</Link></li>
+                      <li><Link to={`#`}>Marque 4</Link></li>
+                      <li><Link to={`#`}>Marque 5</Link></li>
+                    </Stack>
+                  </ul>
                 </AccordionDetails>
               </Accordion>
               <Accordion>
@@ -130,35 +138,36 @@ const Shop = () => {
                   <Typography>Couleur</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <div>
+                {/* <div className='checkbox-shadow'>
                     <Checkbox {...label} 
                       sx={{
                         color: blue[800],
                         '&.Mui-checked': {
                           color: blue[600],
                         },
+                       
                       }} />
-                    <Checkbox {...label} 
-                     sx={{
-                      color: yellow[800],
-                      '&.Mui-checked': {
-                        color: yellow[600],
-                      },
-                    }} />
-                    <Checkbox {...label} 
-                     sx={{
-                      color: pink[800],
-                      '&.Mui-checked': {
-                        color: pink[600],
-                      },
-                    }} />
                     <Checkbox {...label} 
                       sx={{
-                        color: pink[800],
+                        color: orange[800],
                         '&.Mui-checked': {
-                          color: pink[600],
+                          color: orange[600],
                         },
                       }} />
+                    <Checkbox {...label} 
+                      sx={{
+                        color: green[800],
+                        '&.Mui-checked': {
+                          color: green[600],
+                        },
+                      }} />
+                    <Checkbox {...label} 
+                    sx={{
+                      color: grey[800],
+                      '&.Mui-checked': {
+                        color: grey[600],
+                      },
+                    }} />
                     <Checkbox
                       {...label}
                       // defaultChecked
@@ -169,7 +178,19 @@ const Shop = () => {
                         },
                       }}
                     />
-                  </div>
+                  </div> */}
+                   <div className="radio-color-wrapper">
+                      {colorsData.map((data, index) => (
+                        <CustomRadioButton
+                          data={data}
+                          index={`color-${index}`}
+                          name="color"
+                          key={`radio-color-${index}`}
+                          colorClass={data.value}
+                        />
+                      ))}
+                    </div>
+
                 </AccordionDetails>
               </Accordion>
               <Accordion>
@@ -181,10 +202,15 @@ const Shop = () => {
                   <Typography>Modèle</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
-                  </Typography>
+                  <ul >
+                    <Stack spacing={1}>
+                      <li><Link to={`#`}>Modèle 1</Link></li>
+                      <li><Link to={`#`}>Modèle 2</Link></li>
+                      <li><Link to={`#`}>Modèle 3</Link></li>
+                      <li><Link to={`#`}>Modèle 4</Link></li>
+                      <li><Link to={`#`}>Modèle 5</Link></li>
+                    </Stack>
+                  </ul>
                 </AccordionDetails>
               </Accordion>
               <Accordion>
@@ -218,9 +244,9 @@ const Shop = () => {
             </ul>
                   
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={9} sx={{mb:6}}>
             {/* <h3>Sneakers</h3> */}
-            <ImageList sx={{ width: 500, height: 450 }} cols={3}>
+            <ImageList sx={{ width: 1, height: 1}} cols={3}>
               {itemData.map((item) => (
                 <ImageListItem key={item.img}>
                 <img
@@ -243,9 +269,7 @@ const Shop = () => {
         </Grid>
       </Container>
 
-    </div>
-    </Container>
-     
+    </div> 
   )
 };
 const itemData = [
