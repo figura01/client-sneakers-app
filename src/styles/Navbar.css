@@ -1,3 +1,4 @@
+@import url('./vars.css');
 nav {
   border-bottom: 2px solid #DD624E;
 }
@@ -21,6 +22,12 @@ nav {
 
 .nav-icons svg:hover {
   color: #DD624E;
+}
+
+.nav-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -62,7 +69,7 @@ nav {
   display: none;
   position: absolute;
   left: 0;
-  top: 9%;
+  top: 64px;
   background-color: #DD624E;
   width: 100%;
   z-index: 1;
@@ -94,4 +101,21 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+.btn.btn-link {
+  border: 2px solid var(--main-balck);
+  border-radius: 25px;
+  padding: 10px 12px; 
+  background-color: white;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.btn.btn-link:hover {
+  color: var(--main-light-yellow);
+  background-color: var(--main-red);
+  border-color: var(--main-red);
+  transition: all .3s ease-in-out;
 }

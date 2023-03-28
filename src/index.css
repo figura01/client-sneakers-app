@@ -6,7 +6,11 @@ body {
   padding: 0;
   border:0;
   font-size: 16px;
-  font-family: 'Montserrat'
+  font-family: 'Montserrat';
+}
+
+.btn {
+  font-family: 'Montserrat';
 }
 
 a {
@@ -20,4 +24,9 @@ a {
   align-items: center;
   background: #ccc;
   width: 100%;
+}
+
+.error {
+  font-size: .75rem;
+  color: red;
 }
