@@ -16,7 +16,9 @@ const Navbar = () => {
     <nav>
       <Container>
         <div className="navbar">
-          <img src={reactLogo} alt="logo-brand" width={55} height={65} />
+          <Link to={`/`} >
+            <img src={reactLogo} alt="logo-brand" width={55} height={65} />
+          </Link>
           <div className="links">
             <div className="subnav">
               <div className="subnavbtn">
@@ -33,7 +35,7 @@ const Navbar = () => {
           <div className="nav-icons">
             {!authCtx.isLoggedIn ?
               (
-                
+
                 <>
                   <Link to={`login`} className="btn btn-link">
                     Connexion
@@ -47,14 +49,16 @@ const Navbar = () => {
               )
             }
             <SearchOutlinedIcon />
-            <ShoppingBasketOutlinedIcon />
-            
+            <Link to={`panier`}>
+              <ShoppingBasketOutlinedIcon />
+            </Link>
+
             {authCtx.isLoggedIn && (
               <Link to={`profile`}>
                 <PersonOutlineOutlinedIcon />
               </Link>
             )}
-            
+
           </div>
         </div>
       </Container>

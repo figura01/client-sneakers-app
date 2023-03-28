@@ -14,11 +14,11 @@ li {
     display: block;
     content: '';
     border: 1px solid #dd624e;
-    width: 75%;
+    width: 100%;
   }
 
 #copyright {
-   position: relative; 
+   position: relative;
 }
 
 
@@ -27,6 +27,8 @@ li {
     color: #dd624e;
     padding: 14px 16px;
     margin: 0;
-
 }
 
+#copyright p {
+  color: #dd624e
+}
