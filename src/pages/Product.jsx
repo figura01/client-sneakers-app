@@ -112,6 +112,21 @@ const Product = () => {
             <CalendarMonthOutlinedIcon />
             <p>&nbsp;Expédié dès demain !</p>
           </Box>
+          <Box>
+            <h3>Description</h3>
+            <p>
+              Que vous partiez à l’assaut d’un nouveau trail ou de vos courses
+              hebdomadaires, la 410v7 allie confort et durabilité, dans une
+              silhouette discrète.
+              <br />
+              Cette chaussure de course pour hommes est munie d’une semelle
+              intermédiaire douce qui amortit chacun de vos pas, tandis que la
+              semelle extérieure AT Tread est parée à toutes les éventualités,
+              sur la route comme en dehors. <br />
+              Des empiècements résistants aux endroits clés garantissent une
+              empeigne durable et légère.
+            </p>
+          </Box>
         </Grid>
       </Grid>
     </Container>
