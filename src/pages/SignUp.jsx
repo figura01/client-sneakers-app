@@ -19,7 +19,6 @@ const validationSchema = yup.object({
     .string('Entrer votre nom')
     .min(2, 'Le nom doit contenir au minimum 2 characters')
     .required("Le champ nom est requis"),
-
   email: yup
     .string('Entrer votre email')
     .email('Entrer un email valide')
@@ -78,37 +77,6 @@ const SignUp = () => {
       } 
     },
   });
-
-  // const handlerSubmit = async (e) => {
-  //   e.preventDefault();
-    
-  //   if(password !== '' && email !== '') {
-  //     console.log(password, email)
-  //     try {
-  //       const result = await api.login('http://localhost:8000/auth/signup', 
-  //         {
-  //           email,
-  //           password,
-  //           firstname,
-  //           lastname,
-  //         }
-  //       )
-  //       if(result.status === 200 && result.logged) {
-  //         authCtx.login('user', {...result})
-  //       }
-  //     } catch (err) {
-  //       console.log('err: ', err)
-  //     } 
-  //   }
-  // }
-
-  // const handlerChange = (e) => {
-  //   if(e.target.name === 'email') {
-  //     setEmail(e.target.value);
-  //   }else if(e.target.name === 'password') {
-  //     setPassword(e.target.value);
-  //   }
-  // }
 
   return (
     <Box>

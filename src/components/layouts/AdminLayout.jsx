@@ -17,6 +17,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Link, Outlet} from 'react-router-dom';
 
+import '../../styles/admin/AdminLayout.css';
+
 const drawerWidth = 240;
 
 const AdminLayout = props => {
@@ -48,19 +50,7 @@ const AdminLayout = props => {
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      
     </div>
   );
   
@@ -127,8 +117,9 @@ const AdminLayout = props => {
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
-
-        <Outlet />
+        <div className="content-layout">
+          <Outlet />
+        </div>
       </Box>
     </Box>
   )

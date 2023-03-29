@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom';
-import { useAuth } from '../../../contextes/authCtx';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Box } from "@mui/system";
 import { Stack, TextField, MenuItem } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import api from '../../../api/apiHandler'
+// import {useParams} from 'react-router-dom';
+import api from '../../../api/apiHandler';
+import { useAuth } from '../../../contextes/authCtx';
 
 const validationSchema = yup.object({
   firstname: yup
@@ -32,26 +33,23 @@ const validationSchema = yup.object({
     .string('Entrer votre password')
 });
 
-const UserDetail = () => {
-  const {id} = useParams();
-  console.log(id)
-  const [user, setUser] = useState({})
-
+const CreateUser = () => {
   const authCtx = useAuth();
+  const navigate = useNavigate();
   const [error, setError] = useState();
   const [roles, setRoles] = useState([
-    {label: 'Client', value: "client"},
-    {label: 'Admin', value: "admin"}
+    {label: 'Client', value: 'client'},
+    {label: 'Admin', value: 'admin'}
   ]);
 
   const formik = useFormik({
     initialValues: {
-      firstname: user.firstname,
-      lastname: user.lastname,
-      email: user.email,
-      role: user.role
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      role: 'client',
     },
-    enableReinitialize: true,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       alert("values:" + JSON.stringify(values));
@@ -74,6 +72,9 @@ const UserDetail = () => {
           {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
         )
         console.log('result in create User page', result);
+        if(result) {
+          navigate("/admin/users/")
+        }
         
       } catch (err) {
         console.log('rtour error: ------')
@@ -83,33 +84,14 @@ const UserDetail = () => {
     },
   });
 
-  console.log(formik)
-  useEffect(() => {
-    const localInfo = localStorage.getItem('user');
-    const { token } = JSON.parse(localInfo);
-    console.log(token)
-    const fetchUsers = async () => {
-      const results = await api.adminGetOne(
-        `http://localhost:8000/v1/admin/users/${id}`,
-        {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
-      )
-      console.log(results);
-      setUser(results)
-    }
-    fetchUsers();
-  }, []);
-
   return (
-    <div id="user-detail">
-      <header>
-        <h2>Detail de l'utilisateur</h2>
-      </header>
-      
+    <div id="create-user">
+      <h2>Créer un nouveau utilisateur</h2>
       <Box>
-        <form id="form-detail" onSubmit={formik.handleSubmit} method="post" action="http://localhost:8000/auth/login">
-          <div className="inner_detail">
+        <form id="form-signup" onSubmit={formik.handleSubmit} method="post" action="http://localhost:8000/auth/login">
+          <div className="inner_signup">
             <Stack spacing={2} direction="column">
-              <h3>Detail</h3>
+              <h1>Créer un compte</h1>
 
               <TextField
                 required
@@ -151,6 +133,20 @@ const UserDetail = () => {
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
               />
+                
+              <TextField
+                required
+                label="Password"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Mot de passe*"
+                size="small"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                helperText={formik.touched.password && formik.errors.password}
+              />
 
               <TextField
                 id="role"
@@ -180,8 +176,9 @@ const UserDetail = () => {
           </div>
         </form>
       </Box>
+  
     </div>
   )
 }
 
-export default UserDetail
+export default CreateUser
