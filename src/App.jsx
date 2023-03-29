@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import Product from "./pages/Product";
 import Shop from "./pages/Shop";
+import Profil from "./pages/Profil";
 import Panier from "./pages/Panier";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="panier" element={<Panier />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="profile" element={<Profil />} />
         </Route>
 
 

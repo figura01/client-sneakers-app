@@ -23,12 +23,13 @@ export const AuthProvider = props => {
   const login = async (key, userData) => {
     console.log('userData in login: ', userData)
     const { token } = userData;
-    const { logged, role, _id, email } = userData;
+    const { logged, role, _id, email,firstname,lastname } = userData;
     saveUserToSessionStorage({token, logged, role, _id, email})
 
     setIsLoggedIn(true)
-    setAuthUser({_id, email, token, role, logged})
+    setAuthUser({_id, email, token,firstname,lastname, role, logged})
     console.log('role: ', role)
+    console.log('client: ', userData)
     if(role === 'client') {
       navigate('/')
     } else if (role === 'admin'){
