@@ -276,7 +276,7 @@ const Shop = () => {
           </Grid>
           <Grid item xs={9} sx={{ mb: 6 }}>
             {/* <h3>Sneakers</h3> */}
-            <ImageList sx={{ width: 1, height: 1, ml: 2 }} cols={3}>
+            <ImageList sx={{ width: 1, height: 1, ml: 2 }} cols={3} className="shop-imgs">
               {products && products.length > 0 ? (
                 products.map((item, index) => (
                   <Link to={`/product/${item._id}`} key={`image-item-${index}`}>
@@ -284,8 +284,8 @@ const Shop = () => {
                       <img
                         src={item.images[0]}
                         srcSet={item.images[0]}
-                        width="284"
-                        height="350"
+                        width="276"
+                        height="auto"
                         alt={item.name}
                         loading="lazy"
                       />

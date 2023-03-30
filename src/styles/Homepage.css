@@ -1,5 +1,9 @@
 /***  HOMEPAGE  ***/
 
+#brands h1, #commitments h1 {
+  text-align: unset;
+}
+
 section {
   margin-top: 3rem;
 }
