@@ -64,7 +64,7 @@ export default {
       .get(endPoint)
       .then((res) => {
         console.log('res: ', res)
-        res.data
+        return res.data
       })
       .catch(errorHandler);
   },
