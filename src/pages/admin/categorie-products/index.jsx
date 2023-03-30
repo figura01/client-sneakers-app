@@ -7,23 +7,23 @@ import { Link } from 'react-router-dom';
 
 import '../../../styles/admin/UsersIndex.css';
 
-const UserAdmin = () => {
+const CategorieProductAdmin = () => {
 
-  const [users, setUsers] = useState([])
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
     console.log(token)
-    const fetchUsers = async () => {
+    const fetchCategorieProducts = async () => {
       const results = await api.adminGetAll(
-        'http://localhost:8000/v1/admin/users',
+        'http://localhost:8000/v1/categorie-products',
         {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
       )
       console.log(results);
-      setUsers(results)
+      setCategories(results)
     }
-    fetchUsers();
+    fetchCategorieProducts();
   }, []);
   
   const handleDelete = async (e, id) => {
@@ -32,42 +32,40 @@ const UserAdmin = () => {
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
     const results = await api.adminDeleteOne(
-      `http://localhost:8000/v1/admin/users/${id}`,
+      `http://localhost:8000/v1/admin/categorie-products/${id}`,
       {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
     )
     console.group(results)
-    const newListUser = users.filter((u) => u._id !== id)
-    setUsers(newListUser);
+    const newListUser = categories.filter((u) => u._id !== id)
+    setCategories(newListUser);
   }
 
   return (
-    <div id="users">
+    <div id="categorie-product">
       <header>
-        <h2>Liste des utilisateurs</h2>
+        <h2>Liste des categories de produits</h2>
         <Link to={`add`} className="btn btn-add">+</Link>
       </header>
       <table>
         <thead>
           <tr>
             <th>Id</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>label</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           
-          {users.map((u, i) => {
-            return <tr key={u._id}>
-              <td>{u._id}</td>
-              <td>{u.firstname}</td>
-              <td>{u.lastname}</td>
-              <td>{u.email}</td>
+          {categories.map((c, i) => {
+            console.log('c', c)
+            return <tr key={`catgorrie-product-${c._id}`}>
+              <td>{c._id}</td>
+              <td>{c.label}</td>
+
               <td>
-                <Link to={`/admin/users/${u._id}`}>Show</Link>
+                <Link to={`/admin/categorie-products/${c._id}`}>Show</Link>
                 <button>Edit</button>
-                <button onClick={(e) => handleDelete(e, u._id)}>Delete</button>
+                <button onClick={(e) => handleDelete(e, c._id)}>Delete</button>
               </td>
             </tr>
           })}
@@ -78,4 +76,4 @@ const UserAdmin = () => {
   )
 }
 
-export default UserAdmin
+export default CategorieProductAdmin

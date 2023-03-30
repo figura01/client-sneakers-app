@@ -23,12 +23,13 @@ export const AuthProvider = props => {
   const login = async (key, userData) => {
     console.log('userData in login: ', userData)
     const { token } = userData;
-    const { logged, role, _id, email } = userData;
+    const { logged, role, _id, email,firstname,lastname } = userData;
     saveUserToSessionStorage({token, logged, role, _id, email})
 
     setIsLoggedIn(true)
-    setAuthUser({_id, email, token, role, logged})
+    setAuthUser({_id, email, token,firstname,lastname, role, logged})
     console.log('role: ', role)
+    console.log('client: ', userData)
     if(role === 'client') {
       navigate('/')
     } else if (role === 'admin'){
@@ -37,7 +38,7 @@ export const AuthProvider = props => {
   };
 
   const logout = async () => {
-    sessionStorage.setItem('user', null);
+    localStorage.setItem('user', null);
     setAuthUser({});
     setIsLoggedIn(false);
     navigate('/');
@@ -46,7 +47,7 @@ export const AuthProvider = props => {
   const signup = async (key, userData) => {
     console.log('userData in signup: ', userData)
     const { token, logged, role, _id, email, firstname, lastname } = userData;
-    saveUserToSessionStorage({token, _id, logged, role, email, firstname, lastname})
+    saveUserToLocalStorage({token, _id, logged, role, email, firstname, lastname})
 
     setIsLoggedIn(true)
     setAuthUser({_id, firstname, lastname, email, token, role, logged})
@@ -58,8 +59,8 @@ export const AuthProvider = props => {
     }
   }
 
-  const saveUserToSessionStorage = (userInfo) => {
-    sessionStorage.setItem('user', JSON.stringify(userInfo));
+  const saveUserToLocalStorage = (userInfo) => {
+    localStorage.setItem('user', JSON.stringify(userInfo));
   };
 
   const value = useMemo(

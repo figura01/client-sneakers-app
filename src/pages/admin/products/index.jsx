@@ -7,23 +7,23 @@ import { Link } from 'react-router-dom';
 
 import '../../../styles/admin/UsersIndex.css';
 
-const UserAdmin = () => {
+const ProductAdmin = () => {
 
-  const [users, setUsers] = useState([])
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
     console.log(token)
-    const fetchUsers = async () => {
+    const fetchProducts = async () => {
       const results = await api.adminGetAll(
-        'http://localhost:8000/v1/admin/users',
+        'http://localhost:8000/v1/products',
         {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
       )
       console.log(results);
-      setUsers(results)
+      setProducts(results)
     }
-    fetchUsers();
+    fetchProducts();
   }, []);
   
   const handleDelete = async (e, id) => {
@@ -32,42 +32,46 @@ const UserAdmin = () => {
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
     const results = await api.adminDeleteOne(
-      `http://localhost:8000/v1/admin/users/${id}`,
+      `http://localhost:8000/v1/admin/products/${id}`,
       {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
     )
     console.group(results)
-    const newListUser = users.filter((u) => u._id !== id)
-    setUsers(newListUser);
+    const newListUser = categories.filter((u) => u._id !== id)
+    setCategories(newListUser);
   }
 
   return (
-    <div id="users">
+    <div id="categorie-product">
       <header>
-        <h2>Liste des utilisateurs</h2>
+        <h2>Liste des produits</h2>
         <Link to={`add`} className="btn btn-add">+</Link>
       </header>
       <table>
         <thead>
           <tr>
             <th>Id</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
+            <th>Nom</th>
+            <th>Prix unitaire</th>
+            <th>Quantitée</th>
+            <th>Categorie Produit</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           
-          {users.map((u, i) => {
-            return <tr key={u._id}>
-              <td>{u._id}</td>
-              <td>{u.firstname}</td>
-              <td>{u.lastname}</td>
-              <td>{u.email}</td>
+          {products.map((p, i) => {
+            console.log('p', p)
+            return <tr key={`product-${p._id}`}>
+              <td>{p._id}</td>
+              <td>{p.name}</td>
+              <td>{p.unit_price}</td>
+              <td>{p.quantity}</td>
+              <td>{p.categorie.label}</td>
+
               <td>
-                <Link to={`/admin/users/${u._id}`}>Show</Link>
+                <Link to={`/admin/products/${p._id}`}>Show</Link>
                 <button>Edit</button>
-                <button onClick={(e) => handleDelete(e, u._id)}>Delete</button>
+                <button onClick={(e) => handleDelete(e, p._id)}>Delete</button>
               </td>
             </tr>
           })}
@@ -78,4 +82,4 @@ const UserAdmin = () => {
   )
 }
 
-export default UserAdmin
+export default ProductAdmin
