@@ -28,30 +28,24 @@ const CreateCategorieProduct = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       alert("values:" + JSON.stringify(values));
-      console.log('formik submit-------------')
-      console.log('---', values)
-      // alert(JSON.stringify(values, null, 2));
       const localInfo = localStorage.getItem('user');
       const { token } = JSON.parse(localInfo);
-      console.log(token)
 
       try {
-        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/categorie-products', 
+        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/categorie-products',
           {
             label: values.label,
           },
           {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
         )
-        console.log('result in create Product page', result);
         if(result) {
           navigate('/admin/categorie-products');
         }
-        
+
       } catch (err) {
-        console.log('retour error: ------')
         console.log('err: ', err)
-       
-      } 
+
+      }
     },
   });
 
@@ -84,7 +78,7 @@ const CreateCategorieProduct = () => {
           </div>
         </form>
       </Box>
-  
+
     </div>
   )
 }

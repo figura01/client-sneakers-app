@@ -10,11 +10,11 @@ import Shop from "./pages/Shop";
 import Profil from "./pages/Profil";
 import Panier from "./pages/Panier";
 import Login from "./pages/Login";
-import RetourProduit from "./components/RetourProduit";
-import CGU from "./components/CGU";
-import CGV from "./components/CGV";
-import Contact from "./components/Contact";
-import MentionsLegales from "./components/MentionsLegales";
+import RetourProduit from "./pages/RetourProduit";
+import CGU from "./pages/CGU";
+import CGV from "./pages/CGV";
+import Contact from "./pages/Contact";
+import MentionsLegales from "./pages/MentionsLegales";
 
 
 // Routes Admin
