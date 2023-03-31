@@ -11,8 +11,6 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const authCtx = useAuth();
-  console.log('navabr auth')
-  console.log(authCtx)
   return (
     <nav>
       <Container>

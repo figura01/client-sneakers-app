@@ -8,12 +8,13 @@ import * as yup from 'yup';
 
 import api from '../../../api/apiHandler'
 
+// validation des données
 const validationSchema = yup.object({
   firstname: yup
     .string('Votre prénom')
     .min(2, 'Le prénom doit contenir au minimum 2 characters')
     .required("Le champ prénom est requis"),
-  
+
   lastname: yup
     .string('Entrer votre nom')
     .min(2, 'Le nom doit contenir au minimum 2 characters')
@@ -27,14 +28,13 @@ const validationSchema = yup.object({
     .string('Entrer votre password')
     .min(8, 'Le Password doit contebir au minimum 8 characters')
     .required('Password is required'),
-  
+
   role: yup
     .string('Entrer votre password')
 });
 
 const UserDetail = () => {
   const {id} = useParams();
-  console.log(id)
   const [user, setUser] = useState({})
 
   const authCtx = useAuth();
@@ -55,15 +55,12 @@ const UserDetail = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       alert("values:" + JSON.stringify(values));
-      console.log('formik submit-------------')
-      console.log('---', values)
-      // alert(JSON.stringify(values, null, 2));
       const localInfo = localStorage.getItem('user');
       const { token } = JSON.parse(localInfo);
 
 
       try {
-        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/users', 
+        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/users',
           {
             email: values.email,
             password: values.password,
@@ -73,27 +70,22 @@ const UserDetail = () => {
           },
           {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
         )
-        console.log('result in create User page', result);
-        
+
       } catch (err) {
-        console.log('rtour error: ------')
         console.log('err: ', err)
-       
-      } 
+
+      }
     },
   });
 
-  console.log(formik)
   useEffect(() => {
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
-    console.log(token)
     const fetchUsers = async () => {
       const results = await api.adminGetOne(
         `http://localhost:8000/v1/admin/users/${id}`,
         {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
       )
-      console.log(results);
       setUser(results)
     }
     fetchUsers();
@@ -104,7 +96,7 @@ const UserDetail = () => {
       <header>
         <h2>Detail de l'utilisateur</h2>
       </header>
-      
+
       <Box>
         <form id="form-detail" onSubmit={formik.handleSubmit} method="post" action="http://localhost:8000/auth/login">
           <div className="inner_detail">
@@ -164,7 +156,6 @@ const UserDetail = () => {
                 }}
               >
                 {roles.map((option, i) => {
-                  console.log('option: ', option);
                   return (
                     <MenuItem key={`role-select-${i}`} value={option.value}>
                       {option.label}

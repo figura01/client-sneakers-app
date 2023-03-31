@@ -5,7 +5,6 @@ import { Stack, TextField, MenuItem } from '@mui/material';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-// import {useParams} from 'react-router-dom';
 import api from '../../../api/apiHandler';
 import { useAuth } from '../../../contextes/authCtx';
 
@@ -14,7 +13,7 @@ const validationSchema = yup.object({
     .string('Votre prénom')
     .min(2, 'Le prénom doit contenir au minimum 2 characters')
     .required("Le champ prénom est requis"),
-  
+
   lastname: yup
     .string('Entrer votre nom')
     .min(2, 'Le nom doit contenir au minimum 2 characters')
@@ -28,7 +27,7 @@ const validationSchema = yup.object({
     .string('Entrer votre password')
     .min(8, 'Le Password doit contebir au minimum 8 characters')
     .required('Password is required'),
-  
+
   role: yup
     .string('Entrer votre password')
 });
@@ -53,15 +52,12 @@ const CreateUser = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       alert("values:" + JSON.stringify(values));
-      console.log('formik submit-------------')
-      console.log('---', values)
-      // alert(JSON.stringify(values, null, 2));
       const localInfo = localStorage.getItem('user');
       const { token } = JSON.parse(localInfo);
 
 
       try {
-        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/users', 
+        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/users',
           {
             email: values.email,
             password: values.password,
@@ -71,16 +67,14 @@ const CreateUser = () => {
           },
           {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
         )
-        console.log('result in create User page', result);
         if(result) {
           navigate("/admin/users/")
         }
-        
+
       } catch (err) {
-        console.log('rtour error: ------')
         console.log('err: ', err)
-       
-      } 
+
+      }
     },
   });
 
@@ -133,7 +127,7 @@ const CreateUser = () => {
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
               />
-                
+
               <TextField
                 required
                 label="Password"
@@ -160,7 +154,6 @@ const CreateUser = () => {
                 }}
               >
                 {roles.map((option, i) => {
-                  console.log('option: ', option);
                   return (
                     <MenuItem key={`role-select-${i}`} value={option.value}>
                       {option.label}
@@ -176,7 +169,7 @@ const CreateUser = () => {
           </div>
         </form>
       </Box>
-  
+
     </div>
   )
 }

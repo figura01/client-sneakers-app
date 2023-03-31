@@ -63,7 +63,7 @@ const Product = () => {
         </Grid>
         <Grid item xs={6}>
           {/* Grille description */}
-          <p>{product.gamme}</p>
+          <span>{product.gamme}</span>
           <h2>{product.name}</h2>
           <p>
             <strong>{product.unit_price} €</strong>

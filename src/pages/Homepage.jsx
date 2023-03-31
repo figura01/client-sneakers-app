@@ -12,11 +12,9 @@ import contactLogo from "../assets/logo-contact.svg";
 import contactPicture from "../assets/photo-contact.jpg";
 import "../styles/Homepage.css";
 import { AuthContext } from '../contextes/authCtx';
-import { Outlet } from "react-router-dom";
 
 const Homepage = () => {
   const auth = useContext(AuthContext);
-  console.log(auth)
   return (
     <Container>
       <section id="call-to-action">
@@ -39,8 +37,10 @@ const Homepage = () => {
 
       <section id="brands">
         <h1>Nouveautés...</h1>
+          {/* TODO: des methodes pour fetcher les derniers produits */}
         <ScrollGalery />
         <h1>Marques...</h1>
+          {/* TODO: methodes pour fetch les marques */}
         <ScrollGalery />
       </section>
 
@@ -133,6 +133,7 @@ const Homepage = () => {
               prochaines collections.
             </p>
             <p>Vous saurez tout avant les autres !</p>
+            {/* TODO: Envoyer en DB pour une éventuelle newsletter */}
             <input type="email" placeholder="Email*" id="contact-input"></input>
             <input type="submit" value="S'inscrire" className="alt-btn" />
             <p>
@@ -142,7 +143,7 @@ const Homepage = () => {
           </Box>
         </Box>
       </section>
-    </Container>       
+    </Container>
   );
 };
 

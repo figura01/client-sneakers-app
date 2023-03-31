@@ -17,19 +17,15 @@ const validationSchema = yup.object({
     .string('Nom de la catégorie')
     .min(2, 'La catégorie doit contenir au minimum 2 characters')
     .required("Le champ est requis"),
-  
+
   gamme: yup
     .string('Doit être une string')
     .required("Selectionné une gamme"),
-  
-  // colors: yup
-  //   .array().of(yup.string())
-  //   .required("Sélectionner des couleurs"),
-  
+
   type: yup
     .string('Doit être une string')
     .required("Selectionné un type"),
-  
+
   unit_price: yup
     .number('Doit être un nombre')
     .required("Dois être un nombre"),
@@ -48,10 +44,9 @@ const CreateProduct = () => {
       const localInfo = localStorage.getItem('user');
       const { token } = JSON.parse(localInfo);
       const result = await api.adminGetAll(
-        'http://localhost:8000/v1/admin/categorie-products', 
+        'http://localhost:8000/v1/admin/categorie-products',
         {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
       );
-      console.log(result)
       if(result) {
         setCategorie(result)
       }
@@ -117,34 +112,25 @@ const CreateProduct = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log('---', values)
-      // alert("values:" + JSON.stringify(values));
-      console.log('formik submit-------------')
-   
+
       const localInfo = localStorage.getItem('user');
       const { token, _id } = JSON.parse(localInfo);
-      console.log(token, _id);
-      
-      console.log('values:------ ', values)
-      //alert(JSON.stringify(values, null, 2));
+
       try {
-        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/products', 
+        const result = await api.adminCreateOne('http://localhost:8000/v1/admin/products',
           values,
           {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
         )
-        console.log('result in create Product page', result);
         if(result) {
           navigate('/admin/products');
         }
-        
+
       } catch (err) {
-        console.log('retour error: ------')
         console.log('err: ', err)
-       
-      } 
+
+      }
     },
   });
-  console.log(formik.values)
 
   return (
     <div id="create-product">
@@ -173,7 +159,6 @@ const CreateProduct = () => {
                       helperText={formik.touched.categorie && formik.errors.categorie}
                     >
                       {categorie.map((c, i) => {
-                        console.log('categorie products: ', c)
                         return <MenuItem key={`categorie-products-${i}`} value={c._id}>
                           {c.label}
                         </MenuItem>
@@ -211,7 +196,7 @@ const CreateProduct = () => {
                           {g.label}
                         </MenuItem>
                       })}
-                    
+
                     </TextField>
 
                     <TextField
@@ -234,10 +219,8 @@ const CreateProduct = () => {
                       size="small"
                       options={colors}
                       getOptionLabel={(option) => option.label}
-                      // getOptionDisabled={(colors) => (colors.length === 2 ? true : false)}
 
                       onChange={(_, value) => {
-                        console.log('value: ', value);
                         formik.values.colors = value
                       }}
                       defaultValue={[]}
@@ -261,12 +244,11 @@ const CreateProduct = () => {
                       helperText={formik.touched.type && formik.errors.type}
                     >
                       {types.map((t, i) => {
-                        console.log(t)
                         return <MenuItem key={`type-${i}`} value={t.value}>
                           {t.label}
                         </MenuItem>
                       })}
-                    
+
                     </TextField>
 
                     {formik.values.gamme === 'kid' && (
@@ -277,8 +259,7 @@ const CreateProduct = () => {
                         size="small"
                         options={sizes[2].sizes}
                         getOptionLabel={(option) => option}
-                        // getOptionDisabled={(colors) => (colors.length === 2 ? true : false)}
-                        
+
                         defaultValue={sizes[2].sizes}
                         renderInput={(params) => {
                           return (
@@ -294,8 +275,7 @@ const CreateProduct = () => {
                         size="small"
                         options={sizes[0].sizes}
                         getOptionLabel={(option) => option}
-                        // getOptionDisabled={(colors) => (colors.length === 2 ? true : false)}
-                        
+
                         defaultValue={sizes[0].sizes}
                         renderInput={(params) => {
                           return (
@@ -311,8 +291,7 @@ const CreateProduct = () => {
                         size="small"
                         options={sizes[1].sizes}
                         getOptionLabel={(option) => option}
-                        // getOptionDisabled={(colors) => (colors.length === 2 ? true : false)}
-                        
+
                         defaultValue={sizes[1].sizes}
                         renderInput={(params) => {
                           return (
@@ -336,15 +315,15 @@ const CreateProduct = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <input type="submit" value="Ajouter" className="main-btn" />
-                  {error && ( <p className="error">{error.message}</p>)}               
+                  {error && ( <p className="error">{error.message}</p>)}
                 </Grid>
               </Grid>
-              
+
             </div>
           </form>
         </Card>
       </Box>
-  
+
     </div>
   )
 }

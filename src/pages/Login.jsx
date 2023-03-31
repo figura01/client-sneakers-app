@@ -16,7 +16,6 @@ const Login = () => {
     e.preventDefault();
 
     if(password !== '' && email !== '') {
-      console.log(password, email)
       try {
         const result = await api.login('http://localhost:8000/auth/login',
           {
@@ -28,7 +27,6 @@ const Login = () => {
           authCtx.login('user', {...result})
         }
       } catch (err) {
-        console.log('err: ', err)
       }
     }
   }

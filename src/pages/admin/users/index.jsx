@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api/apiHandler';
 
-import fakeUsers from '../../../assets/data/fakeUsers.json';
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
 
@@ -14,21 +13,18 @@ const UserAdmin = () => {
   useEffect(() => {
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
-    console.log(token)
     const fetchUsers = async () => {
       const results = await api.adminGetAll(
         'http://localhost:8000/v1/admin/users',
         {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
       )
-      console.log(results);
       setUsers(results)
     }
     fetchUsers();
   }, []);
-  
+
   const handleDelete = async (e, id) => {
     e.preventDefault();
-    console.log(id)
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
     const results = await api.adminDeleteOne(
@@ -57,7 +53,7 @@ const UserAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          
+
           {users.map((u, i) => {
             return <tr key={u._id}>
               <td>{u._id}</td>
@@ -71,7 +67,7 @@ const UserAdmin = () => {
               </td>
             </tr>
           })}
-          
+
         </tbody>
       </table>
     </div>

@@ -9,6 +9,7 @@ import api from '../api/apiHandler';
 
 import '../styles/SignUp.css';
 
+// Gestion des erreurs de validation de données
 const validationSchema = yup.object({
   firstname: yup
     .string('Votre prénom')
@@ -50,10 +51,6 @@ const SignUp = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
 
-      console.log('formik submit-------------')
-      console.log('---', values)
-      // alert(JSON.stringify(values, null, 2));
-
       try {
         const result = await api.signup('http://localhost:8000/auth/signup',
           {
@@ -63,15 +60,12 @@ const SignUp = () => {
             lastname: values.lastname,
           }
         )
-        console.log(result);
         if(result.status === 200 && result.logged) {
           authCtx.signup('user', {...result})
         } else {
-          console.log('------------')
           setError(result)
         }
       } catch (err) {
-        console.log('rrtour error: ------')
         console.log('err: ', err)
 
       }

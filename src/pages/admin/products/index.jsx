@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api/apiHandler';
 
-import fakeUsers from '../../../assets/data/fakeUsers.json';
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
 
@@ -14,21 +13,18 @@ const ProductAdmin = () => {
   useEffect(() => {
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
-    console.log(token)
     const fetchProducts = async () => {
       const results = await api.adminGetAll(
         'http://localhost:8000/v1/products',
         {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
       )
-      console.log(results);
       setProducts(results)
     }
     fetchProducts();
   }, []);
-  
+
   const handleDelete = async (e, id) => {
     e.preventDefault();
-    console.log(id)
     const localInfo = localStorage.getItem('user');
     const { token } = JSON.parse(localInfo);
     const results = await api.adminDeleteOne(
@@ -58,9 +54,8 @@ const ProductAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          
+
           {products.map((p, i) => {
-            console.log('p', p)
             return <tr key={`product-${p._id}`}>
               <td>{p._id}</td>
               <td>{p.name}</td>
@@ -75,7 +70,7 @@ const ProductAdmin = () => {
               </td>
             </tr>
           })}
-          
+
         </tbody>
       </table>
     </div>

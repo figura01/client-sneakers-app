@@ -17,17 +17,8 @@ import { Card,Avatar, Link } from "@mui/material";
 
 export const ProductContext = createContext();
 const Profil = () => {
-  //const auth = useContext(AuthContext);
   const auth = useContext(AuthContext);
-  console.log('profil auth')
-  console.log(auth.authUser)  
   const user = auth.authUser;
-
-  
-
-
-
-  
 
   return (
     <>
@@ -54,15 +45,15 @@ const Profil = () => {
                   <li style={{display:"flex"}}><WalletIcon style={{marginRight:10}}></WalletIcon><a style={{textDecoration:'none',color:'black'}} href="http://">Mes mode de paiements </a></li>
                 </ul>
               </Card>
-              
+
             </section>
             <section style={{background: ` url(${reactLogo})`,width:'45%'}}>
               <h1 style={{backgroundColor:'#DD624E', color:'white',marginTop:0}}>Bienvenue sur votre compte</h1>
             </section>
         </section>
-        
+
     </>
-        
+
   )
 };
 
