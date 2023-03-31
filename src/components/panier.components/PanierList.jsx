@@ -2,11 +2,11 @@ import Card from '@mui/material/Card';
 import PanierItem from "./PanierItem";
 import { useContext } from "react";
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import { ProductContext } from '../../pages/Panier';
+import { CartContext } from '../../contextes/cartCtx';
 import '../../styles/Panier.css'
 const PanierList = () => {
-    const [products,addProduct,subProduct ,removeProduct] = useContext(ProductContext);
-    if (products.length ===0) {
+    const cartCtx = useContext(CartContext);
+    if (cartCtx.products.length ===0) {
         return (
             <Card sx={{ boxShadow: 3 }} className='ItemsCard'>
                 <p className='msgPanier'>Le panier est vide <SentimentVeryDissatisfiedIcon></SentimentVeryDissatisfiedIcon> </p>    
@@ -17,7 +17,7 @@ const PanierList = () => {
         
             <Card sx={{ boxShadow: 3,overflowY: "auto",height:420 }} className='ItemsCard'>
                 <ul className='panierUl'>  
-                {products.map((product)=>{
+                {cartCtx.products.map((product)=>{
                     return(
                         <div key={product.id}>
                             <PanierItem  product={product}></PanierItem>
