@@ -2,7 +2,7 @@
 // exemple charge un svg depuis le rep public => import viteLogo from '/vite.svg'
 
 import { Route, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
+import SignUp from "./pages/SignUp";
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
 import Product from "./pages/Product";
@@ -10,7 +10,12 @@ import Shop from "./pages/Shop";
 import Profil from "./pages/Profil";
 import Panier from "./pages/Panier";
 import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import RetourProduit from "./components/RetourProduit";
+import CGU from "./components/CGU";
+import CGV from "./components/CGV";
+import Contact from "./components/Contact";
+import MentionsLegales from "./components/MentionsLegales";
+
 
 // Routes Admin
 import HomeAdmin from "./pages/admin/HomeAdmin";
@@ -45,6 +50,12 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="profile" element={<Profil />} />
+          <Route path="retourProduit" element={<RetourProduit />} />
+          <Route path="cgu" element={<CGU />} />
+          <Route path="cgv" element={<CGV />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="mentionsLegales" element={<MentionsLegales />} />
+
         </Route>
 
 

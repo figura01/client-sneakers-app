@@ -29,13 +29,13 @@ const Footer = () => {
             <ul>
               <Stack spacing={1}>
                 <li>
-                  <Link to={`#`}>Retours</Link>
+                  <Link to={`retourProduit`}>Retours</Link>
                 </li>
                 <li>
-                  <Link to={`#`}>Contact</Link>
+                  <Link to={`contact`}>Contact</Link>
                 </li>
                 <li>
-                  <Link to={`#`}>Boutiques</Link>
+                  <Link to={`shop`}>Boutiques</Link>
                 </li>
               </Stack>
             </ul>
@@ -54,13 +54,13 @@ const Footer = () => {
             <ul>
               <Stack spacing={1}>
                 <li>
-                  <Link to={`#`}>Conditions d'utilisation</Link>
+                  <Link to={`cgu`}>Conditions d'utilisation</Link>
                 </li>
                 <li>
-                  <Link to={`#`}>CGV</Link>
+                  <Link to={`cgv`}>CGV</Link>
                 </li>
                 <li>
-                  <Link to={`#`}>Mentions légales</Link>
+                  <Link to={`mentionsLegales`}>Mentions légales</Link>
                 </li>
                 <li>
                   <Link to={`#`}></Link>
