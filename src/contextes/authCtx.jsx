@@ -73,8 +73,13 @@ export const AuthProvider = props => {
     useEffect(() => {
       const getAuthUserInLocalStorage = () => {
         const res = JSON.parse(localStorage.getItem('user'));
+        console.log(res)
         if(res) {
           setAuthUser(res)
+          setIsLoggedIn(true)
+        } else {
+          setAuthUser({})
+          setIsLoggedIn(false)
         }
       }
       getAuthUserInLocalStorage()

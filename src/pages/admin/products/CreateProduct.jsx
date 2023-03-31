@@ -115,7 +115,10 @@ const CreateProduct = () => {
 
       const localInfo = localStorage.getItem('user');
       const { token, _id } = JSON.parse(localInfo);
-
+      console.log(token, _id);
+      
+      console.log('values:------ ', values)
+      //alert(JSON.stringify(values, null, 2));
       try {
         const result = await api.adminCreateOne('http://localhost:8000/v1/admin/products',
           values,
@@ -311,6 +314,18 @@ const CreateProduct = () => {
                     value={formik.values.description}
                     onChange={formik.handleChange}
                     error={formik.touched.description && Boolean(formik.errors.description)}
+                  />
+
+                  <TextField
+                    required
+                    id="main_image"
+                    label="Image principal"
+                    name="main_image"
+                    size="small"
+                    value={formik.values.main_image}
+                    onChange={formik.handleChange}
+                    error={formik.touched.main_image && Boolean(formik.errors.main_image)}
+                    helperText={formik.touched.main_image && formik.errors.main_image}
                   />
                 </Grid>
                 <Grid item xs={12}>

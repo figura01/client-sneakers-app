@@ -29,6 +29,7 @@ import DetailCategorieProductAdmin from './pages/admin/categorie-products/Detail
 
 import ProductAdmin from './pages/admin/products';
 import CreateProduct from './pages/admin/products/CreateProduct';
+import DetailProduct from './pages/admin/products/DetailProduct';
 
 // Layouts
 import AdminLayout from "./components/layouts/AdminLayout";
@@ -74,6 +75,7 @@ const App = () => {
 
             <Route path="products" element={<ProductAdmin />} />CreateProductAdmin
             <Route path="products/add" element={<CreateProduct />} />
+            <Route path="products/:id" element={<DetailProduct />} />
           </Route>
       </Routes>
 
