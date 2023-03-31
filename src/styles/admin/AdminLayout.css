@@ -3,3 +3,19 @@
   flex-direction: column;
   margin-top: 2rem;
 }
+
+.toolbar-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action button {
+  margin-left: 1rem;
+}

@@ -1,0 +1,9 @@
+.inner_product {
+  display: flex;
+  justify-content: flex-start;  
+  padding: 1rem;
+}
+
+.inner_product h1 {
+  margin: 0
+}

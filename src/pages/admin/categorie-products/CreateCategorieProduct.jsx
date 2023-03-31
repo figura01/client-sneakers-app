@@ -42,7 +42,7 @@ const CreateCategorieProduct = () => {
           },
           {headers: { 'x-access-token': token, 'Content-Type': 'application/json' }}
         )
-        console.log('result in create CategorieProduct page', result);
+        console.log('result in create Product page', result);
         if(result) {
           navigate('/admin/categorie-products');
         }
