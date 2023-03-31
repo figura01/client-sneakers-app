@@ -64,7 +64,7 @@ export default {
       .get(endPoint)
       .then((res) => {
         console.log('res: ', res)
-        res.data
+        return res.data
       })
       .catch(errorHandler);
   },
@@ -100,6 +100,7 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler)
   },
+
 
   // Admin
   // adminCreateOne(endPoint, data) {
@@ -147,3 +148,4 @@ export default {
       .catch(errorHandler)
   },
 }
+

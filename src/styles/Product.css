@@ -2,6 +2,10 @@
   margin-right: 5px;
 }
 
+#product-pages h2 {
+  color: #DD624E;
+}
+
 .radio-taille-wrapper, .radio-color-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -51,25 +55,25 @@
 }
 
 .red {
-  background-color: red;
+  background-color: rgb(193, 30, 30);
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: rgb(230, 230, 37);
 }
 
 .blue {
-  background-color: blue;
+  background-color: rgb(57, 57, 241);
 }
 
 .white {
-  background-color: white;
+  background-color: rgb(246, 237, 237);
 }
 
 .black {
-  background-color: black;
+  background-color: rgb(10, 10, 10);
 }
 
 .green {
-  background-color: green;
+  background-color: rgba(4, 156, 4, 0.902);
 }
