@@ -5,7 +5,7 @@ import { Stack, TextField } from '@mui/material';
 
 import api from '../api/apiHandler';
 
-import './Login.css';
+import '../styles/Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,11 +14,11 @@ const Login = () => {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
-    
+
     if(password !== '' && email !== '') {
       console.log(password, email)
       try {
-        const result = await api.login('http://localhost:8000/auth/login', 
+        const result = await api.login('http://localhost:8000/auth/login',
           {
             email,
             password
@@ -29,7 +29,7 @@ const Login = () => {
         }
       } catch (err) {
         console.log('err: ', err)
-      } 
+      }
     }
   }
 
@@ -56,7 +56,7 @@ const Login = () => {
             name="email"
             size="small"
           />
-            
+
           <TextField
             required
             label="Password"
@@ -72,7 +72,7 @@ const Login = () => {
         </div>
       </form>
     </Box>
-    
+
   );
 };
 

@@ -16,13 +16,13 @@ const Product = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState({});
   const path = window.location.pathname.replace("/product", "");
+  // Fetch des données du produit
   useEffect(() => {
     api.getOne(`http://localhost:8000/v1/products/${path}`).then((data) => {
-      console.log("DATA", data);
       setProduct(data);
     });
   }, []);
-
+  // MAJ couleur / taille choisis par le user
   const updateSelection = (event) => {
     event.persist();
     const { name, value } = event.target;
@@ -30,7 +30,7 @@ const Product = () => {
   };
 
   const sendToBasket = () => {};
-
+  // Gestion de l'ajout panier et erreur si pas de choix taille et couleur
   const handleClick = () => {
     selection.color && selection.taille
       ? sendToBasket
