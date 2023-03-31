@@ -79,7 +79,7 @@ const Footer = () => {
           >
             <h1>Réseaux</h1>
 
-            <Stack direction="row" spacing={4} sx={{mt: 4}}>
+            <Stack direction="row" spacing={4} sx={{ mt: 4 }}>
               <FacebookOutlinedIcon />
               <TwitterIcon />
               <InstagramIcon />
@@ -88,14 +88,13 @@ const Footer = () => {
         </Grid>
         <Grid
           container
-          xs={12}
           sx={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Grid item>
+          <Grid item xs={12}>
             <div id="copyright">
               <br />
               <p>© 2023 Sneakly, Inc. Tous droits résérvés</p>

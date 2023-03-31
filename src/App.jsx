@@ -44,7 +44,7 @@ const App = () => {
         {/*Route Client */}
         <Route path="/" element={<ClientLayout />} >
           <Route index element={<Homepage />} />
-          <Route path="product" element={<Product />} />
+          <Route path="product/:id" element={<Product />} />
           <Route path="shop" element={<Shop />} />
           <Route path="panier" element={<Panier />} />
           <Route path="login" element={<Login />} />
@@ -74,7 +74,7 @@ const App = () => {
         </Route>
       </Routes>
 
-     
+
     </>
   );
 };
