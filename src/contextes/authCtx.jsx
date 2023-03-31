@@ -85,7 +85,8 @@ export const AuthProvider = props => {
         }
       }
       getAuthUserInLocalStorage()
-    }, [])
+    }, []);
+    
     return (
     <AuthContext.Provider value={value}>
       {props.children}
