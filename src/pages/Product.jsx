@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Box, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import { Link } from "react-router-dom";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import CustomRadioButton from "../components/CustomRadioButton";
+import { CartContext } from "../contextes/cartCtx";
 import "../styles/Product.css";
 import api from "../api/apiHandler";
 
 const Product = () => {
+  const context = useContext(CartContext)
+
   const [selection, setSelection] = useState({
     color: null,
     taille: null,
@@ -29,11 +32,12 @@ const Product = () => {
     setSelection({ ...selection, [name]: value });
   };
 
-  const sendToBasket = () => {};
   // Gestion de l'ajout panier et erreur si pas de choix taille et couleur
   const handleClick = () => {
+    console.log(selection)
+    console.log(product)
     selection.color && selection.taille
-      ? sendToBasket
+      ? context.addToCart(product)
       : setError({
           message:
             "Vous devez choisir une taille et un coloris pour cet article !",
@@ -102,9 +106,9 @@ const Product = () => {
             )}
           </div>
           {/* Bouton ajouter au panier */}
-          <Link to={`#`} className="main-btn" onClick={handleClick}>
+          <a className="main-btn" onClick={handleClick}>
             Ajouter au panier
-          </Link>
+          </a>
           {/* Gestion des erreurs si user ne selectionne pas taille et couleur */}
           {error && (
             <div className="alerte">
