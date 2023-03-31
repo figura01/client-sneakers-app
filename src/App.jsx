@@ -25,6 +25,7 @@ import CreateUser from './pages/admin/users/CreateUser';
 
 import CategorieProductAdmin from './pages/admin/categorie-products';
 import CreateCategorieProduct from './pages/admin/categorie-products/CreateCategorieProduct';
+import DetailCategorieProductAdmin from './pages/admin/categorie-products/DetailCategorieProductAdmin';
 
 import ProductAdmin from './pages/admin/products';
 import CreateProduct from './pages/admin/products/CreateProduct';
@@ -33,7 +34,8 @@ import CreateProduct from './pages/admin/products/CreateProduct';
 import AdminLayout from "./components/layouts/AdminLayout";
 import ClientLayout from "./components/layouts/ClientLayout";
 
-
+// Protected Route
+import { ProtectedRouteAdmin } from "./components/protectedRoute/ProtectedAdmin";
 
 const App = () => {
   return (
@@ -60,18 +62,19 @@ const App = () => {
 
 
         {/*Route Admin */}
+        
+          <Route path="/admin" element={<ProtectedRouteAdmin><AdminLayout /></ProtectedRouteAdmin>} >
+            <Route path="users" element={<UserAdmin />} />
+            <Route path="users/add" element={<CreateUser />} /> {/*A nested route!*/}
+            <Route path="users/:id" element={<UserDetail />} /> {/*A nested route!*/}
 
-        <Route path="/admin" element={<AdminLayout />} >
-          <Route path="users" element={<UserAdmin />} />
-          <Route path="users/add" element={<CreateUser />} /> {/*A nested route!*/}
-          <Route path="users/:id" element={<UserDetail />} /> {/*A nested route!*/}
+            <Route path="categorie-products" element={<CategorieProductAdmin />} />
+            <Route path="categorie-products/add" element={<CreateCategorieProduct />} />
+            <Route path="categorie-products/:id" element={<DetailCategorieProductAdmin />} />
 
-          <Route path="categorie-products" element={<CategorieProductAdmin />} />
-          <Route path="categorie-products/add" element={<CreateCategorieProduct />} />
-
-          <Route path="products" element={<ProductAdmin />} />CreateProductAdmin
-          <Route path="products/add" element={<CreateProduct />} />
-        </Route>
+            <Route path="products" element={<ProductAdmin />} />CreateProductAdmin
+            <Route path="products/add" element={<CreateProduct />} />
+          </Route>
       </Routes>
 
 

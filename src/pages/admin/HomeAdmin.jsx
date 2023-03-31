@@ -36,7 +36,7 @@ export default function HomeAdmin(props) {
           {text: 'Dashboard', url:'/admin'}, 
           {text: 'Users', url:'/admin/users'}, 
           {text: 'Products', url:'/admin/products'}, 
-          {text: 'Categorie Products', url: '/admin/categorie-product'}, 
+          {text: 'Categorie Products', url: '/admin/categorie-products'}, 
           {text: 'Ordes', url: '/admin/orders'
         }].map((item, index) => (
           <ListItem key={item.text} disablePadding>
@@ -126,9 +126,8 @@ export default function HomeAdmin(props) {
       <Box
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-      >
-
-        <Outlet />
+      > 
+        <h1>Dashboard & Statistic</h1>
       </Box>
     </Box>
   );

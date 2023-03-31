@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,17 +16,26 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Link, Outlet} from 'react-router-dom';
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useAuth } from '../../contextes/authCtx';
 import '../../styles/admin/AdminLayout.css';
 
 const drawerWidth = 240;
 
 const AdminLayout = props => {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const authCtx = useAuth()
+  console.log(authCtx)
+  const [open, setOpen] = useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+  const handleDrawerClose = () => {
+    setOpen(false);
   };
 
   const drawer = (
@@ -38,7 +47,7 @@ const AdminLayout = props => {
           {text: 'Dashboard', url:'/admin'}, 
           {text: 'Users', url:'/admin/users'}, 
           {text: 'Products', url:'/admin/products'}, 
-          {text: 'Categorie Products', url: '/admin/categorie-product'}, 
+          {text: 'Categorie Products', url: '/admin/categorie-products'}, 
           {text: 'Ordes', url: '/admin/orders'
         }].map((item, index) => (
           <ListItem key={item.text} disablePadding>
@@ -66,19 +75,27 @@ const AdminLayout = props => {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
+        <Toolbar className="toolbar-admin">
+          <div className="action">
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerOpen}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div" className="toolbar-title">
+              Administration
+            </Typography>
+          </div>
+          {authCtx.authUser.logged && (
+            <div className="action">
+              <AccountCircleIcon/> {authCtx.authUser.email}
+              <button className="btn btn-link {" onClick={() => {authCtx.logout()}}>Logout</button>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
       <Box
@@ -90,8 +107,8 @@ const AdminLayout = props => {
         <Drawer
           container={container}
           variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
+          open={open}
+          onClose={handleDrawerClose}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
@@ -118,6 +135,7 @@ const AdminLayout = props => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <div className="content-layout">
+          
           <Outlet />
         </div>
       </Box>
