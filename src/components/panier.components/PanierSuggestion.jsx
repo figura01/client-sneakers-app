@@ -15,13 +15,13 @@ const PanierSuggestion = () => {
                 {/*<KeyboardArrowLeftIcon style={{alignSelf:'center', color:'white' ,fontSize:50,padding:5,borderRadius:50,backgroundColor:'#DD624E',marginLeft:10}} ></KeyboardArrowLeftIcon>*/}
                 
                 <div style={{display:'flex',width:1000,justifyContent:'space-between',overflow:"auto",margin:10}}>
-                {cartCtx.products.map((product,index)=>{
+                {cartCtx.cart.map((product,index)=>{
                     return(
                 
-                    <Card key={product.id} className='Scrollabe' style={{border:'none',minWidth:250, margin:25}}  >
-                        <img style={{width:'100%',height:122}} src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt=""  />
+                    <Card key={product.id} className='Scrollabe' style={{border:'none', padding:10 ,minWidth:200, margin:25}}  >
+                        <img style={{width:'100%',height:122}} src={product.images[0]} alt=""  />
                         <p style={{textAlign:'center'}} className='nomProduit'>{product.name}</p>
-                        <p style={{textAlign:'center'}} >prix : {product.price} €</p>
+                        <p style={{textAlign:'center'}} >prix : {product.unit_price} €</p>
                     </Card>
                 
                 ) 
