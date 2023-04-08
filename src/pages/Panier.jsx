@@ -11,8 +11,8 @@ import { Card } from "@mui/material";
 // export const ProductContext = createContext();
 const Panier = () => {
   const cartCtx = useContext(CartContext);
-  console.log(cartCtx.products);
-  if(cartCtx.products.length<1){
+  console.log(cartCtx.cart);
+  if(cartCtx.cart.length<1){
     return (
       <>
         <section className="PanierSection">

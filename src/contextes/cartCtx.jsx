@@ -4,8 +4,14 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   // Charger le panier sauvegardé dans le localStorage
-  const savedCart = JSON.parse(localStorage.getItem('cart'));
+  let savedCart
+  if (localStorage.getItem('cart')!== null) {
+    savedCart = JSON.parse(localStorage.getItem('cart'));
+    //console.log("thi is saved "+savedCart)
+  }
+
   const [cart, setCart] = useState(savedCart || []);
+  
 
   // Charger les produits sauvegardés dans le localStorage
   const savedProducts = JSON.parse(localStorage.getItem('products'));
@@ -29,50 +35,44 @@ export const CartProvider = ({ children }) => {
 
   // Ajouter un produit au panier
   const addToCart = (product) => {
-    const existingProduct = cart.find((item) => item.id === product.id);
-
+    const existingProduct = cart.find((item) => item._id === product._id);
+    //let qtt = 1;
     if (existingProduct) {
       const updatedCart = cart.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        item._id === product._id ? { ...item, cartQuantity: item.cartQuantity+1 } : item
       );
+      console.log(updatedCart)
       setCart(updatedCart);
       saveCartToLocalStorage(updatedCart);
     } else {
-      const updatedCart = [...cart, { ...product, quantity: 1 }];
+      const updatedCart = [...cart, { ...product, cartQuantity: 1 }];
       setCart(updatedCart);
       saveCartToLocalStorage(updatedCart);
     }
 
-    // Mettre à jour la quantité disponible du produit
-    const updatedProducts = products.map((item) =>
-      item.id === product.id ? { ...item, availableQuantity: item.availableQuantity - 1 } : item
-    );
-    setProducts(updatedProducts);
-    saveProductsToLocalStorage(updatedProducts);
   };
 
   // Retirer un produit du panier
   const removeFromCart = (productId) => {
-    const existingProduct = cart.find((item) => item.id === productId);
-
-    if (existingProduct.quantity === 1) {
-      const updatedCart = cart.filter((item) => item.id !== productId);
+    const existingProduct = cart.find((item) => item._id === productId);
+    //let qtt = 1;
+    if (existingProduct && existingProduct.cartQuantity>=1) {
+      const updatedCart = cart.map((item) =>
+        item._id === productId ? { ...item, cartQuantity: item.cartQuantity-1 } : item
+      );
+      console.log(updatedCart)
       setCart(updatedCart);
       saveCartToLocalStorage(updatedCart);
     } else {
-      const updatedCart = cart.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
-      );
-      setCart(updatedCart);
-      saveCartToLocalStorage(updatedCart);
+      if (cart.length>1) {
+        const updatedCart = cart.filter(item=>item._id !== productId);
+        setCart(updatedCart);
+        saveCartToLocalStorage(updatedCart);
+      }else{
+        clearCart();
+      }
+      
     }
-
-    // Mettre à jour la quantité disponible du produit
-    const updatedProducts = products.map((item) =>
-      item.id === productId ? { ...item, availableQuantity: item.availableQuantity + 1 } : item
-    );
-    setProducts(updatedProducts);
-    saveProductsToLocalStorage(updatedProducts);
   };
 
   // Vider le panier
